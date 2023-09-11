@@ -1,0 +1,6 @@
+Endpoints to GET form
+
+1. Fetching Available Ad Spots
+2. Fetching user's booked ad slot by userID
+3. Fetching Group details by groupID
+4. Fetching group's competition records  by groupID
