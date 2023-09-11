@@ -493,7 +493,7 @@ bot.command('end_comp', async (ctx) => {
 //   // ];
 
 //   // await ctx.replyWithMediaGroup(mediaGroup)
-// 	await axios.get('http://172.31.62.7:3000/submission/test').then((res) => {
+// 	await axios.get(`${process.env.API_HOST}/submission/test`).then((res) => {
 // 		console.log('a');
 // 	}).catch((err) => {
 // 		console.log('b');

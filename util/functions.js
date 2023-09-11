@@ -64,7 +64,7 @@ const isGroupOrSuper = async (ctx) => {
 
 // ================ DB Functions =================
 const getGroupDetails = async (groupId) => {
-	const groupData = await axios.get(`http://172.31.62.7:3000/tg-group/${groupId}/details`)
+	const groupData = await axios.get(`${process.env.API_HOST}/tg-group/${groupId}/details`)
 	.then(async (res) => {
 		// console.log(res.data);
 		return res.data;
@@ -87,7 +87,7 @@ const getGroupDetails = async (groupId) => {
 }
 
 const getActiveCompDetails = async (groupId) => {
-	const compData = await axios.get(`http://172.31.62.7:3000/competition/${groupId}/active`)
+	const compData = await axios.get(`${process.env.API_HOST}/competition/${groupId}/active`)
 	.then(async (res) => {
 		return res.data;
 	})
@@ -107,7 +107,7 @@ const getActiveCompDetails = async (groupId) => {
 
 const getLatestCompDetails = async (groupId) => {
 	const compData = await axios
-	.get(`http://172.31.62.7:3000/competition/${groupId}/latest`)
+	.get(`${process.env.API_HOST}/competition/${groupId}/latest`)
 	.then(async (res) => {
 		return res.data;
 	})
@@ -127,7 +127,7 @@ const getLatestCompDetails = async (groupId) => {
 
 const uploadSubmission = async (compId, data) => {
 	const uploadStatus = await axios
-	.post(`http://172.31.62.7:3000/submission/${compId}/submit`, data)
+	.post(`${process.env.API_HOST}/submission/${compId}/submit`, data)
 	.then(async (res) => {
 		// Submission uploaded successfuly
 		return 'uploaded'
@@ -146,7 +146,7 @@ const uploadSubmission = async (compId, data) => {
 
 const getUserSubmissions = async (compId, userId) => {
 	const userSubmissions = await axios
-	.get(`http://172.31.62.7:3000/submission/${compId}/submissions/${userId}`)
+	.get(`${process.env.API_HOST}/submission/${compId}/submissions/${userId}`)
 	.then(async (res) => {
 		return res.data;
 	})
@@ -166,7 +166,7 @@ const getUserSubmissions = async (compId, userId) => {
 
 const registerGroup = async (data) => {
 	const registerStatus = await axios
-	.post('http://172.31.62.7:3000/tg-group/register', data)
+	.post(`${process.env.API_HOST}/tg-group/register`, data)
 	.then(async (res) => {
 		// Token registered successfuly
 		return 'registered'
@@ -188,7 +188,7 @@ const registerGroup = async (data) => {
 
 const updateGroupDetails = async (data) => {
 	const updateStatus = await axios
-	.post(`http://172.31.62.7:3000/tg-group/update`, data)
+	.post(`${process.env.API_HOST}/tg-group/update`, data)
 	.then(async (res) => {
 		// Group details updated successfuly
 		return 'updated'
@@ -211,7 +211,7 @@ const updateGroupDetails = async (data) => {
 
 const startCompetition = async (data) => {
 	const startStatus = await axios
-	.post('http://172.31.62.7:3000/competition/start', data)
+	.post(`${process.env.API_HOST}/competition/start`, data)
 	.then(async (res) => {
 		// Competition started successfuly
 		return res.data;
@@ -231,7 +231,7 @@ const startCompetition = async (data) => {
 
 const endCompetition = async (groupId, compId) => {
 	const endStatus = await axios
-	.get(`http://172.31.62.7:3000/competition/${groupId}/end/${compId}`)
+	.get(`${process.env.API_HOST}/competition/${groupId}/end/${compId}`)
 	.then(async () => {
 		return 'ended'
 	})

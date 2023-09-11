@@ -3,7 +3,7 @@ const axios = require('axios');
 
 // Function to fetch available ad slots from the API
 async function fetchAvailableSlots() {
-	const URL = 'http://172.31.62.7:3000/ad-slot/available-slots';
+	const URL = `${process.env.API_HOST}/ad-slot/available-slots`;
 
   return await axios.get(URL)
 		.then((response) => {
@@ -30,7 +30,7 @@ async function fetchAvailableSlots() {
 
 // Function to update the ad slot for a specific user
 async function updateAdSlot(userId) {
-	const URL = `http://172.31.62.7:3000/ad-slot/update-slot/${userId}`
+	const URL = `${process.env.API_HOST}/ad-slot/update-slot/${userId}`
 
 	return await axios.get(URL)
 		.then((response) => {
