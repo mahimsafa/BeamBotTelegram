@@ -1,0 +1,26 @@
+name: Deployment Telegram BOt
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          SOURCE: "*"
+          REMOTE_HOST: ${{ secrets.SERVER_DNS }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          TARGET: /home/ubuntu/app/
+          SCRIPT_AFTER: |
+            echo 'test' > test.txt
+            cp /home/ubuntu/env /home/ubuntu/app/.env
+            cd /home/ubuntu/app && npm install
+            pm2 restart tg-bot
